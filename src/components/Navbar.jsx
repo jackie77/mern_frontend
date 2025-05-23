@@ -18,6 +18,7 @@ const Navbar = () => {
 					base: "column",
 					sm: "row",
 				}}
+				pt={{ base: 4, sm: 0 }} 
 			>
 				<Text
 					fontSize={{ base: "22", sm: "28" }}
@@ -26,6 +27,7 @@ const Navbar = () => {
 					textAlign={"center"}
 					bgGradient={"linear(to-r, cyan.400, blue.500)"}
 					bgClip={"text"}
+					pb={{ base: 4, sm: 0 }} 
 				>
 					<Link to={"/"}>All Calculations</Link>
 				</Text>

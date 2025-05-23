@@ -1,29 +1,46 @@
 import { Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDaggerStore } from "../store/dagger";
 import DaggerCard from "../components/DaggerCard";
+import FunnyButton from "../components/FunnyButton";
 
 const HomePage = () => {
 	const { fetchDaggers, daggers } = useDaggerStore();
 
-	useEffect(() => {
-		fetchDaggers();
-	}, [fetchDaggers]);
-	console.log("daggers", daggers);
+const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Call your existing fetch function
+    fetchDaggers();
+
+    // Mobile check logic
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, [fetchDaggers]);
 
 	return (
 		<Container maxW='container.xl' py={12}>
 			<VStack spacing={8}>
 				<Text
-					fontSize={"30"}
+					fontSize={{ base: "25", sm: "15", md: "30" }}
 					fontWeight={"bold"}
 					bgGradient={"linear(to-r, cyan.400, blue.500)"}
 					bgClip={"text"}
 					textAlign={"center"}
+					
 				>
 					Monthly Principle and Interest
 				</Text>
+				{!isMobile && <FunnyButton />}
 
 				<SimpleGrid
 					columns={{

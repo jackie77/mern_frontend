@@ -22,9 +22,12 @@ export const useDaggerStore = create((set) => ({
 	},
 	fetchDaggers: async () => {
 		const res = await fetch("https://mern-backend-wknc.onrender.com/api/daggers");
-		console.log("======")
-		console.log(res)
 		const data = await res.json();
+		console.log(res)
+		    data.data.sort((a, b) => a.monthlyPI - b.monthlyPI);
+
+    // Log sorted result
+    console.log("sorted", data.data);
 		set({ daggers: data.data });
 	},
 	deleteDagger: async (pid) => {
