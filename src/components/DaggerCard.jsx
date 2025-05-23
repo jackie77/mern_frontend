@@ -107,8 +107,9 @@ const DaggerCard = ({ dagger }) => {
         <Text as='samp' fontSize="m"  mb={4}>Total Payment: </Text>
 				<Text as='samp'color={textColor} >${dagger.totalPayment}</Text>
 				<br />
+        <br />
 
-        <HStack spacing={2}>
+        <HStack spacing={4} justify="flex-end">
           <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
           <IconButton
             icon={<DeleteIcon />}
